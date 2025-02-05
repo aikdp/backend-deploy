@@ -7,7 +7,7 @@ pipeline {
         timeout(time:30, unit: 'MINUTES')
     }
     parameters {    //added this params
-        booleanParam(name: 'deploy', defaultValue: false, description: 'Select to Deploy or Not')   //toggle button, like switch
+       //booleanParam(name: 'deploy', defaultValue: false, description: 'Select to Deploy or Not')   //toggle button, like switch
 
         choice(name: 'ENVIRONMENT', choices: ['dev', 'qa', 'uat', 'pre-prod', 'prod'], description: 'Select Your Environment')  //like dropdown
     
