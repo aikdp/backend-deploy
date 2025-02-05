@@ -1,0 +1,9 @@
+deployment:
+  imageURL: 537124943253.dkr.ecr.us-east-1.amazonaws.com/expense/dev/backend #ADD AWS ECR IMAGE URI. Push to ECR, then only will get image URL
+  imageVersion: IMAGE_VERSION   #dynamucally replace with SED editor
+  replicas: 2
+hpa:
+  cpuUtilization: 12  #usually > 75
+
+configMap:
+  db_host: expense-dev.c96s2yeo6pdv.us-east-1.rds.amazonaws.com #replace with RDS endpoint url, as we are using MySQL, already craeted in AWS. Here I given wrong naming, thats why I got pod error.
