@@ -7,7 +7,7 @@ pipeline {
         timeout(time:30, unit: 'MINUTES')
     }
     parameters {    //added this params
-       //booleanParam(name: 'deploy', defaultValue: false, description: 'Select to Deploy or Not')   //toggle button, like switch
+       booleanParam(name: 'deploy', defaultValue: false, description: 'Select to Deploy or Not')   //toggle button, like switch
 
         choice(name: 'ENVIRONMENT', choices: ['dev', 'qa', 'uat', 'pre-prod', 'prod'], description: 'Select Your Environment')  //like dropdown
     
@@ -16,11 +16,11 @@ pipeline {
     environment{
         appVersion = ''
         region = 'us-east-1'
-        account_id = '537124943253'
+        //account_id = '537124943253'
         project = 'expense'    
         environment = '' //remove here, we will take dynamically using params.
         component  = 'backend'
-        //account_id = ''
+        account_id = ''
     }
 
     stages {
@@ -29,7 +29,7 @@ pipeline {
                 script{
                     environment = params.ENVIRONMENT    //dynamically takes
                     appVersion  = params.version
-                    //account_id  = pipelineGlobals.getAccountID(environment)
+                    account_id  = pipelineGlobals.getAccountID(environment)
                 }
             }
         }
@@ -59,8 +59,8 @@ pipeline {
         //         }
         //     }
         // }
-        //write Integration Test
-        //Write JIIRA Stage
+        // write Integration Test
+        // Write JIIRA Stage
         stage('Deploy $component'){
             steps{
                 withAWS(region: 'us-east-1', credentials: 'aws-creds'){
