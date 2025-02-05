@@ -20,7 +20,7 @@ pipeline {
         project = 'expense'    
         environment = '' //remove here, we will take dynamically using params.
         component  = 'backend'
-        account_id = ''
+        //account_id = ''
     }
 
     stages {
