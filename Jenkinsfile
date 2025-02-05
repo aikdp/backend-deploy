@@ -33,32 +33,32 @@ pipeline {
                 }
             }
         }
-        // stage('Integration Test') {    //added this stage
-        //     when{
-        //         expression {params.ENVIRONMENT == 'qa'}
-        //     }
-        //     steps{
-        //         script{
-        //             sh """
-        //                 echo "RUN integration test"
-        //             """
-        //         }
-        //     }
-        // }
-        // stage('Check JIRA') {    //added this stage
-        //     when{
-        //         expression {params.ENVIRONMENT == 'prod'}
-        //     }
-        //     steps{
-        //         script{
-        //             sh """
-        //                 echo "check jira status"
-        //                 echo "check jira deployment window"
-        //                 echo "fail pipeline if above two are not true"
-        //             """
-        //         }
-        //     }
-        // }
+        stage('Integration Test') {    //added this stage
+            when{
+                expression {params.ENVIRONMENT == 'qa'}
+            }
+            steps{
+                script{
+                    sh """
+                        echo "RUN integration test"
+                    """
+                }
+            }
+        }
+        stage('Check JIRA') {    //added this stage
+            when{
+                expression {params.ENVIRONMENT == 'prod'}
+            }
+            steps{
+                script{
+                    sh """
+                        echo "check jira status"
+                        echo "check jira deployment window"
+                        echo "fail pipeline if above two are not true"
+                    """
+                }
+            }
+        }
         // write Integration Test
         // Write JIIRA Stage
         stage('Deploy $component'){
