@@ -65,7 +65,8 @@ pipeline {
             steps{
                 withAWS(region: 'us-east-1', credentials: 'aws-creds'){
                     sh """
-                    aws eks update-kubeconfig --region ${region} --name ${project}-${environment}
+                    aws eks update-kubeconfig --region ${region} --name ${project}-dev  
+                    
 
                     cd helm     
 
@@ -76,6 +77,7 @@ pipeline {
                     """
                     //dot means current folder of Dockerfile exists
                     //sed: Streamline Editor--> without opening the file, we can substitute the values.
+                    // aws eks update-kubeconfig --region ${region} --name ${project}-${environment} --hardcoding as we have dev for practice
                 }
             }
         }
